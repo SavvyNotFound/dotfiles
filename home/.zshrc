@@ -42,8 +42,9 @@ export LFS="/mnt/lfs"
 alias ..="cd .."
 alias ...="cd ../.."
 alias l="ls -lah"
-alias ls='ls --color=auto'
+alias ls="ls --color=auto"
 alias ts="~/dots/config/tmux/scripts/tmux-sessionizer.sh"
+alias ta="mux a"
 
 # tools
 alias vim="nvim"
@@ -52,6 +53,7 @@ alias nano="nvim"
 alias e="exit"
 alias ff="fastfetch"
 alias cat="bat"
+alias mkprj='~/dots/scripts/mkprj.sh'
 
 # git
 alias gs="git status"
@@ -59,6 +61,9 @@ alias ga="git add ."
 alias gc="git commit -m"
 alias gp="git push"
 alias gl="git log --oneline --graph"
+
+# extras
+alias wsk="wshowkeys -a bottom -a right -m 30 -F 'JetBrains Mono Nerd Font 22' -f '#FFFFFFff' -b '#111111cc' -t 350"
 
 # ── nvim/vim in cmdlind ───────────────────────────────────────────────────────
 # ── Why tf did I not know this before??? ──────────────────────────────────────
@@ -98,3 +103,6 @@ bindkey -M vicmd 'y' vi-yank-clipboard
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export PATH=$PATH:~/.spicetify
+
+# bun completions
+[ -s "/home/savvy/.bun/_bun" ] && source "/home/savvy/.bun/_bun"

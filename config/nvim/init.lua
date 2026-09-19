@@ -25,6 +25,7 @@ require('lazy').setup({
     require 'plugins.blankline',
     require 'plugins.misc',
     require 'plugins.dap',
+    require 'plugins.cord',
     require 'plugins.theme',
     require 'plugins.snacks',
     require 'plugins.cmaketools',

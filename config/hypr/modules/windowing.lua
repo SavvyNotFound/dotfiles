@@ -51,6 +51,20 @@ hl.window_rule({
 })
 
 hl.window_rule({
+    name = "Luna App",
+    match = { title = "Luna Application"},
+
+    float = true
+})
+
+hl.window_rule({
+    name = "Crescent",
+    match = { title = "Crescent"},
+
+    float = true
+})
+
+hl.window_rule({
     name  = "move-hyprland-run",
     match = { class = "hyprland-run" },
 
