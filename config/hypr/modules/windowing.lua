@@ -73,6 +73,14 @@ hl.window_rule({
 })
 
 hl.window_rule({
+    name  = "Kitty",
+    match = { class = "kitty" },
+
+    border_size = 0,
+    opacity = "1 override"
+})
+
+hl.window_rule({
     name  = "Zen",
     match = { class = "app.zen_browser.zen" },
     workspace = "2 silent"
@@ -82,7 +90,7 @@ hl.window_rule({
     name  = "Sober",
     match = { class = "org.vinegarhq.Sober" },
     workspace = "3 silent",
-    opacity = 1
+    opacity = "1 override"
 })
 
 hl.window_rule({
@@ -97,7 +105,7 @@ hl.window_rule({
     name  = "Minecraft",
     match = { class = "Minecraft*" },
     workspace = "3 silent",
-    opacity = 1
+    opacity = "1 override"
 })
 
 hl.window_rule({
