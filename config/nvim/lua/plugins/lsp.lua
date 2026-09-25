@@ -175,6 +175,53 @@ return {
                 root_markers = { ".git" },
             })
 
+            vim.lsp.config("cmake_language_server", {
+                cmd = { "cmake-language-server" },
+                filetypes = { "cmake" },
+            })
+
+            vim.lsp.config("asm-lsp", {
+                cmd = { "asm-lsp" },
+                filetypes = { "asm" },
+                root_dir = function(bufnr, on_dir)
+                    on_dir(vim.fn.getcwd())
+                end,
+            })
+
+            vim.lsp.config("jdtls", {
+                cmd = { "jdtls" },
+                filetypes = { "java" },
+                root_dir = function(bufnr, on_dir)
+                    on_dir(vim.fn.getcwd())
+                end,
+            })
+
+            vim.lsp.config("texlab", {
+                cmd = { "texlab" },
+                filetypes = { "tex", "bib" },
+                root_dir = function(bufnr, on_dir)
+                    on_dir(vim.fn.getcwd())
+                end,
+                settings = {
+                    texlab = {
+                        build = {
+                            executable = "latexmk",
+                            args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
+                            onSave = true, -- Automatically compile on save
+                        },
+                        forwardSearch = {
+                            executable = "zathura", -- Or 'skim' (macOS), 'okular' (Linux), etc.
+                            args = { "--synctex-forward", "%l:1:%c", "%p" },
+                        },
+                        chktex = {
+                            onOpenAndSave = true, -- Run ChkTeX linter for syntax warnings
+                        },
+                        bibtexFormatter = "texlab",
+                        formatterLineLength = 80,
+                    },
+                },
+            })
+
             ----------------------------------------------------------------
             -- Enable servers
             ----------------------------------------------------------------
@@ -189,6 +236,10 @@ return {
                 "ts_ls",
                 "pylsp",
                 "glsl_analyzer",
+                "cmake_language_server",
+                "asm-lsp",
+                "jdtls",
+                "texlab",
             })
 
             ----------------------------------------------------------------
@@ -248,6 +299,9 @@ return {
                         vim.lsp.buf.code_action,
                         "Code Action"
                     )
+
+                    -- LaTeX Binds
+                    map("n", "<leader>tf", "<cmd>TexlabForward<cr>", "LaTeX sync with document")
 
                     --------------------------------------------------------
                     -- Folding

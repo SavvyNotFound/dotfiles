@@ -71,5 +71,17 @@ return {
                 desc = "Flash",
             },
         },
-    }
+    },
+    {
+        "lervag/vimtex",
+        lazy = false, -- Load on startup so filetype detection works
+        init = function()
+            -- Select your PDF viewer (zathura, skim, mupdf, general)
+            vim.g.vimtex_view_method = "zathura"
+
+            -- Disable default vimtex quickfix auto-open if you prefer LSP diagnostics
+            vim.g.vimtex_quickfix_mode = 0
+        end,
+}
+
 }

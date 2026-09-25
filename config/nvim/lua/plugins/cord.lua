@@ -20,7 +20,7 @@ return {
             show_status = false, -- clear the presence instead of showing an idle status
         },
         timestamp = {
-            reset_on_idle = true,
+            reset_on_idle = false,
         },
     }
 }
