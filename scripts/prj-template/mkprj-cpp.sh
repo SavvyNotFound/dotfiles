@@ -2,58 +2,78 @@
 
 set -euo pipefail
 
-# Check for exactly 3 arguments
-if [ "$#" -ne 3 ]; then
-    echo "Usage: $0 <ProjectName> <ParentName> <ChildName>"
-    echo "Example: $0 MyProject Server Client"
+usage() {
+    echo "Usage:"
+    echo "  $0 <ProjectName>                             (Single Project)"
+    echo "  $0 <ProjectName> <ParentName> <ChildName>    (Parent/Child Layout)"
+    echo ""
+    echo "Examples:"
+    echo "  $0 MyGame"
+    echo "  $0 simple-tcp-cpp sTCP App"
     exit 1
+}
+
+# 1. Parse arguments and determine layout
+if [ "$#" -eq 1 ]; then
+    LAYOUT=1
+    PROJECT_NAME="$1"
+elif [ "$#" -eq 3 ]; then
+    LAYOUT=2
+    PROJECT_NAME="$1"
+    PARENT_NAME="$2"
+    CHILD_NAME="$3"
+else
+    usage
 fi
 
-PROJECT_NAME="$1"
-PARENT_NAME="$2"
-CHILD_NAME="$3"
+# 2. Define paths
+TEMPLATES_BASE="${HOME}/dots/extra/project-templates/cpp"
+TEMPLATE_DIR="${TEMPLATES_BASE}/prj-layout-${LAYOUT}"
+TARGET_DIR="./${PROJECT_NAME}"
 
-# Path to template directory
-TEMPLATE_DIR="${HOME}/dots/extra/project-templates/cpp/prj-layout-2"
-
+# 3. Pre-flight checks
 if [ ! -d "${TEMPLATE_DIR}" ]; then
     echo "Error: Template directory '${TEMPLATE_DIR}' does not exist."
     exit 1
 fi
-
-TARGET_DIR="./${PROJECT_NAME}"
 
 if [ -d "${TARGET_DIR}" ]; then
     echo "Error: Target directory '${TARGET_DIR}' already exists."
     exit 1
 fi
 
-echo "Creating project in ${TARGET_DIR}..."
+echo "Creating project '${PROJECT_NAME}' (Layout ${LAYOUT}) in ${TARGET_DIR}..."
 cp -r "${TEMPLATE_DIR}" "${TARGET_DIR}"
 cd "${TARGET_DIR}"
 
-# 1. Update project name inside the root CMakeLists.txt
-if [ -f "CMakeLists.txt" ]; then
-    # Replaces 'prj-layout-2' or 'project(...)' declarations with the new project name
-    sed -i "s/prj-layout-2/${PROJECT_NAME}/g" CMakeLists.txt
+# 4. Prepare dynamic substitution script
+SED_SCRIPT="s/Project/${PROJECT_NAME}/g"
+
+if [ "$LAYOUT" -eq 2 ]; then
+    SED_SCRIPT+="; s/Parent/${PARENT_NAME}/g; s/Children/${CHILD_NAME}/g"
 fi
 
-# 2. Rename files and directories matching 'Parent' and 'Children'
-find . -depth \( -name "*Parent*" -o -name "*Children*" \) | while read -r path; do
+# 5. Rename files and directories (deepest-first to preserve valid paths)
+find . -depth | while read -r path; do
+    if [ "$path" = "." ]; then
+        continue
+    fi
+    
     dir=$(dirname "${path}")
     base=$(basename "${path}")
     
-    new_base=$(echo "${base}" | sed "s/Parent/${PARENT_NAME}/g; s/Children/${CHILD_NAME}/g")
+    # Apply substitutions to the filename
+    new_base=$(echo "${base}" | sed "${SED_SCRIPT}")
     
     if [ "${base}" != "${new_base}" ]; then
         mv "${path}" "${dir}/${new_base}"
     fi
 done
 
-# 3. Replace internal file contents for Parent and Children
+# 6. Replace internal file contents for text files only
 find . -type f | while read -r file; do
     if file "${file}" | grep -q "text"; then
-        sed -i "s/Parent/${PARENT_NAME}/g; s/Children/${CHILD_NAME}/g" "${file}"
+        sed -i "${SED_SCRIPT}" "${file}"
     fi
 done
 
