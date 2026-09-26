@@ -106,3 +106,4 @@ export PATH=$PATH:~/.spicetify
 
 # bun completions
 [ -s "/home/savvy/.bun/_bun" ] && source "/home/savvy/.bun/_bun"
+source /home/savvy/.local/share/leaf/completions/_leaf

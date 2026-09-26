@@ -65,6 +65,13 @@ hl.window_rule({
 })
 
 hl.window_rule({
+    name = "VKEngine",
+    match = { title = "VKEngine"},
+
+    float = true
+})
+
+hl.window_rule({
     name  = "move-hyprland-run",
     match = { class = "hyprland-run" },
 
