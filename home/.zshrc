@@ -44,7 +44,9 @@ alias ...="cd ../.."
 alias l="ls -lah"
 alias ls="ls --color=auto"
 alias ts="~/dots/config/tmux/scripts/tmux-sessionizer.sh"
-alias ta="mux a"
+alias ta="tmux a"
+alias dots="cd ~/dots/"
+alias dev="cd ~/dev/"
 
 # tools
 alias vim="nvim"
@@ -106,4 +108,7 @@ export PATH=$PATH:~/.spicetify
 
 # bun completions
 [ -s "/home/savvy/.bun/_bun" ] && source "/home/savvy/.bun/_bun"
+
+# leaf completions
+
 source /home/savvy/.local/share/leaf/completions/_leaf

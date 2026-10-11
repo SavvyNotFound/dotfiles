@@ -84,7 +84,7 @@ vim.keymap.set('x', 'p', '"_dP', optsDesc("Paste over without copying"))
 -- Diagonistic
 vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1 }) end, optsDesc("Goto Previous Diagnostic"))
 vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = 1 }) end, optsDesc("Goto Next Diagnostic"))
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, optsDesc("Open Diagnostic Reason"))
+vim.keymap.set('n', '<C-q>', vim.diagnostic.open_float, optsDesc("Open Diagnostic Reason"))
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, optsDesc("List the diagnostics"))
 
 

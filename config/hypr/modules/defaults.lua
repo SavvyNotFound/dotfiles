@@ -5,6 +5,7 @@ fileManager      = "nautilus"
 appPicker        = "rofi -show drun -config application.rasi"
 
 controlPanel     = ""
+logoutMenu       = "wlogout"
 
 volumeUp         = "~/dots/scripts/volume.sh raise"
 volumeDown       = "~/dots/scripts/volume.sh lower"

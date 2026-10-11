@@ -12,7 +12,7 @@ return {
             "neovim/nvim-lspconfig",
         },
         opts = {
-            automatic_enable = false,
+            automatic_enable = true,
         },
     },
 
@@ -82,6 +82,8 @@ return {
             })
 
             vim.lsp.config("pyright", {
+                cmd = { "pyright-langserver", "--stdio" },
+                filetypes = { "python" },
                 settings = {
                     pyright = {
                         disableTaggedHints = true,
@@ -141,34 +143,6 @@ return {
                 },
             })
 
-            vim.lsp.config("pylsp", {
-                settings = {
-                    pylsp = {
-                        plugins = {
-                            pyflakes = {
-                                enabled = false,
-                            },
-
-                            pycodestyle = {
-                                enabled = false,
-                            },
-
-                            autopep8 = {
-                                enabled = false,
-                            },
-
-                            yapf = {
-                                enabled = false,
-                            },
-
-                            mccabe = {
-                                enabled = false,
-                            },
-                        },
-                    },
-                },
-            })
-
             vim.lsp.config("glsl_analyzer", {
                 cmd = { "glsl_analyzer" },
                 filetypes = { "glsl" },
@@ -222,6 +196,14 @@ return {
                 },
             })
 
+            vim.lsp.config("glow", {
+                cmd = { "glow" },
+                filetypes = { "markdown" },
+                root_dir = function(bufnr, on_dir)
+                    on_dir(vim.fn.getcwd())
+                end,
+            })
+
             ----------------------------------------------------------------
             -- Enable servers
             ----------------------------------------------------------------
@@ -234,12 +216,13 @@ return {
                 "gopls",
                 "rust_analyzer",
                 "ts_ls",
-                "pylsp",
                 "glsl_analyzer",
                 "cmake_language_server",
                 "asm-lsp",
                 "jdtls",
                 "texlab",
+                "glow",
+                "slang",
             })
 
             ----------------------------------------------------------------

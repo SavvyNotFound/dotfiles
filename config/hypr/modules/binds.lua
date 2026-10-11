@@ -10,7 +10,7 @@ hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(appPicker))
 hl.bind(mainMod .. " + M", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + SHIFT + V", hl.dsp.window.float({action = "toggle"}), {description = "Float/Tile"} )
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({"maximize"}, {description = "Fullscreen"}) )
-hl.bind("ALT + CONTROL + DELETE", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind("ALT + CONTROL + DELETE", hl.dsp.exec_cmd(logoutMenu))
 
 -- Vim Motions Window Focus / Movement
 hl.bind(mainMod .. " + h",  hl.dsp.focus({ direction = "left" }))
