@@ -1,3 +1,7 @@
+if [[ "$TERM" == "xterm-kitty" ]]; then
+    fastfetch
+fi
+
 eval $(dircolors -b)
 
 # Instant prompt (must be at the very top)
@@ -9,7 +13,7 @@ fi
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 # Adjust the paths above if yours differ (check with: pacman -Ql zsh-theme-powerlevel10k)
 
-# Syntax highlighting & autosuggestions (install via pacman if missing)
+# Syntax highlighting & autosuggestions
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
@@ -33,20 +37,22 @@ setopt SHARE_HISTORY
 export EDITOR=nvim
 export VISUAL=nvim
 export VULKAN_SDK=/usr
-export CMAKE_BUILD_PARALLEL_LEVEL=3
-export PATH="$HOME/.local/bin:$PATH"
+export CMAKE_BUILD_PARALLEL_LEVEL=8
+export PATH="$HOME/opt/msvc/bin/x64:$HOME/.local/bin:$PATH"
 export LFS="/mnt/lfs"
 
 # ── Aliases ───────────────────────────────────────────────────────────────────
+
 # navigation
 alias ..="cd .."
 alias ...="cd ../.."
-alias l="ls -lah"
+alias l="ls -lah --color=auto"
 alias ls="ls --color=auto"
 alias ts="~/dots/config/tmux/scripts/tmux-sessionizer.sh"
 alias ta="tmux a"
 alias dots="cd ~/dots/"
 alias dev="cd ~/dev/"
+alias home="cd ~"
 
 # tools
 alias vim="nvim"
@@ -110,5 +116,4 @@ export PATH=$PATH:~/.spicetify
 [ -s "/home/savvy/.bun/_bun" ] && source "/home/savvy/.bun/_bun"
 
 # leaf completions
-
 source /home/savvy/.local/share/leaf/completions/_leaf

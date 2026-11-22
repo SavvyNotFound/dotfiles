@@ -12,7 +12,7 @@ return {
                 light = "lotus",
             },
 
-            transparent = false,
+            transparent = true,
             terminalColors = true,
 
             commentStyle = { italic = true },
@@ -25,8 +25,8 @@ return {
 
                 return {
                     -- Base
-                    Normal = { bg = ui.bg },
-                    NormalNC = { bg = ui.bg },
+                    Normal = { fg = "#C5CAD6", bg = "NONE" },
+                    NormalNC = { fg = "#C5CAD6", bg = "NONE" },
 
                     -- No panel backgrounds
                     NormalFloat = { bg = "NONE" },

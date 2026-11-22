@@ -7,21 +7,17 @@ export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 pkill nm-applet
 (nm-applet) &
 
-# Waybar
-pkill waybar
-(waybar) &
-
-# Wallpaper
-pkill awww-daemon
-(awww-daemon) &
-
-# Notifications
-pkill mako
-(mako) &
+# Quickshell
+pkill qs
+#(QS_NO_RELOAD_POPUP=1 qs) & # Quickshell Dist
+(qs) &                    # Quickshell Debug
 
 # kdeconnectd
 pkill kdeconnectd
 (kdeconnectd) &
+
+
+(/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1)
 
 # ---- cliphist (safe) ----
 pgrep -x wl-paste >/dev/null || {

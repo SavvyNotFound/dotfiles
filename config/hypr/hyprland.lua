@@ -10,7 +10,7 @@ require("modules.defaults")
 
 require("modules.binds")
 require("modules.looks")
-require("modules.io")
+require("modules.ioDevices")
 require("modules.env-vars")
 require("modules.windowing")
 require("modules.misc")

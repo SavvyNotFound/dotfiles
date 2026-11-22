@@ -4,15 +4,15 @@ terminal         = "kitty"
 fileManager      = "nautilus"
 appPicker        = "rofi -show drun -config application.rasi"
 
-controlPanel     = ""
+controlPanel     = "qs ipc call controlPanel toggleControlPanel"
 logoutMenu       = "wlogout"
 
-volumeUp         = "~/dots/scripts/volume.sh raise"
-volumeDown       = "~/dots/scripts/volume.sh lower"
-volumeMuteToggle = "~/dots/scripts/volume.sh mute"
+volumeUp         = "qs ipc call volumeOSD volumeUp"
+volumeDown       = "qs ipc call volumeOSD volumeDown"
+volumeMuteToggle = "qs ipc call volumeOSD toggleMute"
 
-brightnessUp     = "~/dots/scripts/brightness.sh raise"
-brightnessDown   = "~/dots/scripts/brightness.sh lower"
+brightnessUp     = "qs ipc call brightnessOSD brightnessUp"
+brightnessDown   = "qs ipc call brightnessOSD brightnessDown"
 
 kamojiPicker     = "rofimoji --files kaomoji"
 emojiPicker      = "rofimoji"

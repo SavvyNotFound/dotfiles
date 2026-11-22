@@ -204,6 +204,14 @@ return {
                 end,
             })
 
+            vim.lsp.config("qml", {
+                cmd = { "qmlls6" },
+                filetypes = { "qml" },
+                root_dir = function(bufnr, on_dir)
+                    on_dir(vim.fn.getcwd())
+                end,
+            })
+
             ----------------------------------------------------------------
             -- Enable servers
             ----------------------------------------------------------------
@@ -223,6 +231,7 @@ return {
                 "texlab",
                 "glow",
                 "slang",
+                "qml"
             })
 
             ----------------------------------------------------------------

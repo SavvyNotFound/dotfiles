@@ -3,10 +3,10 @@
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
     general = {
-        gaps_in  = 0,
-        gaps_out = 0,
+        gaps_in  = 2,
+        gaps_out = 20,
 
-        border_size = 1,
+        border_size = 0,
 
         col = {
             active_border   = { colors = {"rgba(cdd6f4ee)"} },
@@ -28,12 +28,12 @@ hl.config({
     },
 
     decoration = {
-        rounding       = 0,
-        rounding_power = 0,
+        rounding       = 10,
+        rounding_power = 2,
 
         -- Change transparency of focused and unfocused windows
-        active_opacity   = 0.90,
-        inactive_opacity = 0.80,
+        active_opacity   = 0.95,
+        inactive_opacity = 0.90,
 
         blur = {
             enabled   = true,
@@ -44,7 +44,57 @@ hl.config({
     },
 
     animations = {
-        enabled = false,
+        enabled = true,
+    },
+
+    -- Window Groupbar
+    group = {
+        groupbar = {
+            enabled = true,
+
+            -- Typography
+            font_family = "JetBrainsMono Nerd Font",
+            font_size = 12,
+            font_weight_active = "bold",
+            font_weight_inactive = "normal",
+
+            render_titles = true,
+            text_padding = 12,
+            text_offset = 0,
+
+            -- Active / inactive backgrounds
+            col = {
+                active = {
+                    colors = {"rgba(cdd6f4ee)"},
+                },
+                inactive = {
+                    colors = {"rgba(3a3a40ee)"},
+                },
+                locked_active = {
+                    colors = {"rgba(a6adc8ee)"},
+                },
+                locked_inactive = {
+                    colors = {"rgba(303036ee)"},
+                },
+            },
+
+            -- Text colours
+            text_color = "rgba(1a1a1eff)",
+            text_color_inactive = "rgba(cdd6f4cc)",
+            text_color_locked_active = "rgba(1a1a1eff)",
+            text_color_locked_inactive = "rgba(cdd6f4aa)",
+
+            -- Spacing and shape
+            height = 12,
+            gaps_in = 3,
+            gaps_out = 3,
+            rounding = 6,
+            rounding_power = 2,
+
+            blur = false,
+            scrolling = false,
+            middle_click_close = true,
+        },
     },
 })
 
@@ -69,31 +119,31 @@ hl.config({
     },
 })
 
-
--- Default curves and animations, see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Animations/
-hl.curve("easeOutQuint",   { type = "bezier", points = { {0.23, 1},    {0.32, 1}    } })
+-- Snappy, modern bezier curves
+hl.curve("easeOutQuint",   { type = "bezier", points = { {0.16, 1},    {0.3, 1}     } })
 hl.curve("easeInOutCubic", { type = "bezier", points = { {0.65, 0.05}, {0.36, 1}    } })
-hl.curve("linear",         { type = "bezier", points = { {0, 0},       {1, 1}       } })
-hl.curve("almostLinear",   { type = "bezier", points = { {0.5, 0.5},   {0.75, 1}    } })
-hl.curve("quick",          { type = "bezier", points = { {0.15, 0},    {0.1, 1}     } })
+hl.curve("linear",         { type = "bezier", points = { {0, 0},        {1, 1}       } })
+hl.curve("almostLinear",   { type = "bezier", points = { {0.4, 0.4},    {0.2, 1}     } })
+hl.curve("quick",          { type = "bezier", points = { {0.1, 0},      {0.1, 1}     } })
 
--- Default springs
-hl.curve("easy",           { type = "spring", mass = 1, stiffness = 71.2633, dampening = 15.8273644 })
+-- Fast, responsive spring
+hl.curve("easy",           { type = "spring", mass = 0.8, stiffness = 200.0, dampening = 15.0 })
 
-hl.animation({ leaf = "global",        enabled = true,  speed = 0.5, bezier = "default" })
-hl.animation({ leaf = "border",        enabled = true,  speed = 2, bezier = "easeOutQuint" })
-hl.animation({ leaf = "windows",       enabled = true,  speed = 2, spring = "easy" })
-hl.animation({ leaf = "windowsIn",     enabled = true,  speed = 2, spring = "easy",         style = "popin 87%" })
-hl.animation({ leaf = "windowsOut",    enabled = true,  speed = 2, bezier = "linear",       style = "popin 87%" })
-hl.animation({ leaf = "fadeIn",        enabled = true,  speed = 2, bezier = "almostLinear" })
-hl.animation({ leaf = "fadeOut",       enabled = true,  speed = 2, bezier = "almostLinear" })
-hl.animation({ leaf = "fade",          enabled = true,  speed = 2, bezier = "quick" })
-hl.animation({ leaf = "layers",        enabled = true,  speed = 2, bezier = "easeOutQuint" })
-hl.animation({ leaf = "layersIn",      enabled = true,  speed = 2, bezier = "easeOutQuint", style = "fade" })
-hl.animation({ leaf = "layersOut",     enabled = true,  speed = 2, bezier = "linear",       style = "fade" })
-hl.animation({ leaf = "fadeLayersIn",  enabled = true,  speed = 2, bezier = "almostLinear" })
-hl.animation({ leaf = "fadeLayersOut", enabled = true,  speed = 2, bezier = "almostLinear" })
-hl.animation({ leaf = "workspaces",    enabled = true,  speed = 2, bezier = "almostLinear", style = "fade" })
-hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 2, bezier = "almostLinear", style = "fade" })
-hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 2, bezier = "almostLinear", style = "fade" })
-hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 2, bezier = "quick" })
+-- Animations
+hl.animation({ leaf = "global",        enabled = true,  speed = 0.8, bezier = "default" })
+hl.animation({ leaf = "border",        enabled = true,  speed = 0.5, bezier = "easeOutQuint" })
+hl.animation({ leaf = "windows",       enabled = true,  speed = 0.5, spring = "easy" })
+hl.animation({ leaf = "windowsIn",     enabled = true,  speed = 0.5, spring = "easy",         style = "popin 90%" })
+hl.animation({ leaf = "windowsOut",    enabled = true,  speed = 0.5, bezier = "linear",       style = "popin 90%" })
+hl.animation({ leaf = "fadeIn",        enabled = true,  speed = 0.5, bezier = "almostLinear" })
+hl.animation({ leaf = "fadeOut",       enabled = true,  speed = 0.5, bezier = "almostLinear" })
+hl.animation({ leaf = "fade",          enabled = true,  speed = 0.4, bezier = "quick" })
+hl.animation({ leaf = "layers",        enabled = true,  speed = 0.5, bezier = "easeOutQuint" })
+hl.animation({ leaf = "layersIn",      enabled = true,  speed = 0.5, bezier = "easeOutQuint", style = "fade" })
+hl.animation({ leaf = "layersOut",     enabled = true,  speed = 0.5, bezier = "linear",       style = "fade" })
+hl.animation({ leaf = "fadeLayersIn",  enabled = true,  speed = 0.5, bezier = "almostLinear" })
+hl.animation({ leaf = "fadeLayersOut", enabled = true,  speed = 0.5, bezier = "almostLinear" })
+hl.animation({ leaf = "workspaces",    enabled = true,  speed = 0.6, bezier = "easeOutQuint", style = "slidefade 20%" })
+hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 0.6, bezier = "easeOutQuint", style = "slidefade 20%" })
+hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 0.6, bezier = "easeOutQuint", style = "slidefade 20%" })
+hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 0.5, bezier = "quick" })

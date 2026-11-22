@@ -82,6 +82,9 @@ return {
             -- Disable default vimtex quickfix auto-open if you prefer LSP diagnostics
             vim.g.vimtex_quickfix_mode = 0
         end,
-}
-
+    },
+    {
+        "peterhoeg/vim-qml",
+        ft = { "qml" },
+    }
 }

@@ -84,7 +84,7 @@ hl.window_rule({
     match = { class = "kitty" },
 
     border_size = 0,
-    opacity = "1 override"
+    opacity = "0.90 override"
 })
 
 hl.window_rule({
@@ -110,14 +110,20 @@ hl.window_rule({
 
 hl.window_rule({
     name  = "Minecraft",
-    match = { class = "Minecraft*" },
+    match = { class = "com.mojang.minecraft" },
     workspace = "3 silent",
     opacity = "1 override"
 })
 
 hl.window_rule({
-    name  = "Discord",
+    name  = "Vesktop",
     match = { class = "vesktop" },
+    workspace = "4 silent"
+})
+
+hl.window_rule({
+    name  = "Discord",
+    match = { class = "discord" },
     workspace = "4 silent"
 })
 
@@ -125,4 +131,16 @@ hl.window_rule({
     name  = "Spotify",
     match = { class = "spotify" },
     workspace = "5 silent"
+})
+
+hl.window_rule({
+    name  = "Osu!lazer",
+    match = { class = "osu!" },
+    workspace = "3 silent"
+})
+
+hl.window_rule({
+    name  = "Osu!stable",
+    match = { class = "osu!.exe" },
+    workspace = "3 silent"
 })

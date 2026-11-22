@@ -1,67 +1,101 @@
 {
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
     "logo": {
-        "source": "~/dots/config/fastfetch/ascii/cat.txt",
+        "type": "kitty-direct",
+        "source": "~/dots/config/fastfetch/asset/images/arch.png",
+        "width": 32,
+        "height": 16,
         "padding": {
-            "top": 2,
-            "right": 6
+            "top": 3,
+            "left": 1,
+            "right": 7
         }
     },
     "display": {
-        "separator": " "
+        "separator": "  ",
+        "key": {
+            "width": 12
+        },
+        "color": {
+            "keys": "#9ab1cb",
+            "title": "#ced6df",
+            "separator": "#666666"
+        }
     },
     "modules": [
-	"break",
-	"break",
-	{
+        "break",
+        "break",
+        {
             "type": "title",
-            "keyWidth": 10
+            "format": "{user-name-colored}{at-symbol-colored}{host-name-colored}"
         },
         "break",
         {
             "type": "os",
-            "key": " ",
-            "keyColor": "33",  // = color3
+            "key": "  OS",
+            "format": "{pretty-name} {arch}"
         },
         {
             "type": "kernel",
-            "key": " ",
-            "keyColor": "33",
-        },
-        {
-            "type": "packages",
-            "format": "{pacman} (pacman)",
-            "key": " ",
-            "keyColor": "33",  
-        },
-        {
-            "type": "shell",
-            "key": " ",
-            "keyColor": "33", 
-        },
-        {
-            "type": "terminal",
-            "key": " ",
-            "keyColor": "33", 
-        },
-        {
-            "type": "wm",
-            "key": " ",
-            "keyColor": "33", 
+            "key": "  Kernel",
+            "format": "{release}"
         },
         {
             "type": "uptime",
-            "key": " ",
-            "keyColor": "33", 
+            "key": "󰥔  Uptime"
         },
         {
-            "type": "media",
-            "key": "󰝚 ",
-            "keyColor": "33", 
+            "type": "packages",
+            "key": "󰏖  Pkgs",
+            "format": "{pacman} pacman · {flatpak-all} flatpak"
         },
         "break",
-        "colors",
+        {
+            "type": "wm",
+            "key": "  WM",
+            "format": "{pretty-name} · {protocol-name}"
+        },
+        {
+            "type": "shell",
+            "key": "  Shell"
+        },
+        {
+            "type": "terminal",
+            "key": "  Term"
+        },
         "break",
+        {
+            "type": "cpu",
+            "key": "  CPU",
+            "format": "{name} · {cores-physical}C/{cores-logical}T"
+        },
+        {
+            "type": "gpu",
+            "key": "󰢮  GPU",
+            "hideType": "integrated",
+            "format": "{name}"
+        },
+        {
+            "type": "memory",
+            "key": "  RAM",
+            "format": "{used} / {total}"
+        },
+        {
+            "type": "disk",
+            "key": "󰋊  Disk",
+            "folders": "/",
+            "format": "{size-used} / {size-total}"
+        },
+        {
+            "type": "battery",
+            "key": "󰁹  Battery",
+            "format": "{capacity} · {status}"
+        },
         "break",
-    ]
+        {
+            "type": "custom",
+            "format": "\u001b[38;2;206;214;223m●  \u001b[38;2;154;177;203m●  \u001b[38;2;147;150;200m●  \u001b[38;2;164;204;209m●  \u001b[38;2;145;153;161m●\u001b[0m"
+        },
+        "break"
+            ]
 }
