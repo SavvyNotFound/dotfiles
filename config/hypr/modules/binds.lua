@@ -72,6 +72,7 @@ hl.bind(mainMod .. " + ALT + j", hl.dsp.window.move({ x = 0, y =  25, relative =
 
 -- Extras
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(clipboard))
+hl.bind(mainMod .. " + SHIFT + EQUAL", hl.dsp.exec_cmd(wsk))
 hl.bind(mainMod .. " + Period", hl.dsp.exec_cmd(emojiPicker))
 hl.bind(mainMod .. " + SHIFT + Period", hl.dsp.exec_cmd(kamojiPicker))
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd(screenShot))
